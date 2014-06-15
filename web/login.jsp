@@ -32,7 +32,7 @@
                             <input type="password" id="fpassword" name="password" value="" class="form-control" placeholder="Contraseña"/>
                         </div>
                         <div class="form-group"> 
-                            <p><input type="checkbox" name="ingeniero" value="ON" id="admin"/> Activar solo si es Administrador
+                            <p><input type="checkbox" name="ingeniero" value="ON" id="admin"/> Activar solo si es ingeniero de alimentos
 
                             </p>
                         </div>
