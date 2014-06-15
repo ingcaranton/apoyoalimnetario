@@ -1,0 +1,54 @@
+<%@page import="com.apoyo.vo.IngAlimentosVO"%>
+<%@page import="com.apoyo.dao.IngAlimentosDAO"%>
+<%@page import="com.apoyo.dao.EstudianteDAO"%>
+<%@page import="com.apoyo.conexion.Conexion"%>
+<%@page import="com.apoyo.vo.EstudianteVO"%>
+<%@page import="java.sql.ResultSet"%>
+<%@ page pageEncoding="UTF-8" %>
+<%@page language="java" session="true" %>
+<%
+    String usuario = "";
+
+    EstudianteVO est = null;
+    EstudianteDAO estDAO = new EstudianteDAO();
+    
+    IngAlimentosDAO ingDAO = new IngAlimentosDAO();
+    IngAlimentosVO ing = null;
+    
+    ResultSet rs = null;
+    
+    rs = (ResultSet) session.getAttribute("rs");
+    if (session.getAttribute("nombre") == null) {
+        try {
+            if (session.getAttribute("ingeniero") != null) {
+                ing = (IngAlimentosVO) session.getAttribute("ingeniero");
+                ing =  ingDAO.consultar(ing.getCedula());
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar la sesion del Ingeniero de Alimentos. " + e);
+        }
+        try {
+            if (session.getAttribute("estudiante") != null) {               
+                est = (EstudianteVO) session.getAttribute("estudiante");
+                est= estDAO.consultar(est.getCodigo());    
+            }
+        } catch (Exception e) {
+            System.out.println("Error al cargar sesion Estudiante. " + e);
+        }
+    }
+    System.gc();
+
+    HttpSession sesionOk = request.getSession();
+
+    if (sesionOk.getAttribute(
+            "usuario") == null) {
+%>
+<jsp:forward page="login.jsp">
+    <jsp:param name="error" value="Es obligatorio identificarse"/>
+</jsp:forward>
+<%
+    } else {
+        usuario = "" + session.getAttribute("usuario");
+    }
+
+%>

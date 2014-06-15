@@ -1,0 +1,23 @@
+<%    
+    String info = "";
+    if (request.getAttribute("info") != null) {
+        info = request.getAttribute("info").toString();
+    }
+    String err = "";
+    if (request.getAttribute("err") != null) {
+        err = request.getAttribute("err").toString();
+    }
+    String warning = "";
+    if (request.getAttribute("warning") != null) {
+        warning = request.getAttribute("warning").toString();
+    }
+    String success = "";
+    if (request.getAttribute("success") != null) {
+        success = request.getAttribute("success").toString();
+    }
+%>
+<br>
+<p class="bg-success"><%=success%></p>
+<p class="bg-info"><%=info%></p>
+<p class="bg-warning"><%=warning%></p>
+<p class="bg-danger"><%=err%></p>
